@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaChevronDown } from 'react-icons/fa';
+import ResumeContent from './ResumeContent.jsx';
 
 export default function HomeComponent() {
   const [P5Sketch, setP5Sketch] = useState(null);
@@ -11,16 +12,16 @@ export default function HomeComponent() {
   }, []);
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-gruvbox-bg text-gruvbox-fg">
-      {/* Background animation (only loaded client-side) */}
-      <div className="absolute inset-0 z-0">
+    <div className="relative w-full bg-gruvbox-bg text-gruvbox-fg">
+      {/* Background animation - Fixed in background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         {P5Sketch ? <P5Sketch /> : null}
       </div>
 
-      {/* Centered content */}
-      <div className="relative z-10 w-full h-full flex items-center justify-center px-4">
-        <div className="bg-gruvbox-bg border border-gruvbox-bg3 rounded-xl p-8 md:p-12 max-w-2xl text-center shadow-xl">
-          <h1 className="text-4xl md:text-5xl font-bold text-gruvbox-orange">
+      {/* Hero Section */}
+      <div className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center px-4">
+        <div className="bg-gruvbox-bg/40 backdrop-blur-sm border border-gruvbox-bg3 p-8 md:p-12 max-w-2xl text-center shadow-2xl">
+          <h1 className="text-4xl md:text-6xl font-bold text-gruvbox-orange">
             Aidan O'Neil
           </h1>
           <p className="mt-4 text-xl md:text-2xl text-gruvbox-fg2">
@@ -28,14 +29,14 @@ export default function HomeComponent() {
           </p>
           <div className="mt-6 flex flex-wrap gap-4 justify-center">
             <a
-              href="/resume"
-              className="px-6 py-3 text-lg bg-gruvbox-orange rounded-lg font-medium hover:shadow-lg transition-all duration-300"
+              href="#resume"
+              className="px-6 py-3 text-lg bg-gruvbox-orange text-gruvbox-bg0 font-bold hover:shadow-lg transition-all duration-300"
             >
               View My Resume
             </a>
             <a
               href="/projects"
-              className="px-6 py-3 text-lg bg-gruvbox-bg1 border border-gruvbox-bg3 rounded-lg font-medium hover:bg-gruvbox-bg2 transition-all duration-300"
+              className="px-6 py-3 text-lg bg-gruvbox-bg1 border border-gruvbox-bg3 font-bold hover:bg-gruvbox-bg2 transition-all duration-300"
             >
               Check Out My Work
             </a>
@@ -61,7 +62,19 @@ export default function HomeComponent() {
             </a>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <button
+          onClick={() => document.getElementById('resume')?.scrollIntoView({ behavior: 'smooth' })}
+          className="absolute bottom-10 animate-bounce text-gruvbox-yellow text-4xl hover:text-gruvbox-orange transition-colors duration-300 cursor-pointer focus:outline-none"
+          aria-label="Scroll to Resume"
+        >
+          <FaChevronDown />
+        </button>
       </div>
+
+      {/* Resume Content Integrated Below */}
+      <ResumeContent />
     </div>
   );
 }

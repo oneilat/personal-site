@@ -8,15 +8,21 @@
   color-scheme: dark;
 }
 
-html, body {
+html,
+body {
   @apply bg-gruvbox-bg text-gruvbox-fg;
   @apply min-h-screen;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'JetBrainsMono Nerd Font', 'JetBrains Mono', monospace;
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
-  overscroll-behavior-y: none; /* Prevents scrolling past the top/bottom */
+  overscroll-behavior-y: none;
+  /* Prevents scrolling past the top/bottom */
+}
+
+* {
+  border-radius: 0 !important;
 }
 
 .typing-cursor {
@@ -28,18 +34,43 @@ html, body {
 }
 
 @keyframes blink {
-  from, to { opacity: 1; }
-  50% { opacity: 0; }
+
+  from,
+  to {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Use viewport height */
+  min-height: 100vh;
+  /* Use viewport height */
 }
 
 main {
-  flex: 1; /* This will make the main content take up available space */
+  flex: 1;
+  /* This will make the main content take up available space */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
 }
 
 footer {

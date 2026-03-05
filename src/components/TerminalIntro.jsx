@@ -28,11 +28,11 @@ const TerminalIntro = () => {
 
   // Added return statement with JSX for the terminal
   return (
-    <div className="bg-black p-4 rounded-md shadow-lg font-mono text-green-400 max-w-md mx-auto mt-8">
+    <div className="bg-black p-4 shadow-lg font-mono text-green-400 max-w-md mx-auto mt-8">
       <div className="flex items-center mb-2">
-        <div className="h-3 w-3 rounded-full bg-red-500 mr-2"></div>
-        <div className="h-3 w-3 rounded-full bg-yellow-500 mr-2"></div>
-        <div className="h-3 w-3 rounded-full bg-green-500"></div>
+        <div className="h-3 w-3 bg-red-500 mr-2"></div>
+        <div className="h-3 w-3 bg-yellow-500 mr-2"></div>
+        <div className="h-3 w-3 bg-green-500"></div>
       </div>
       <div className="p-2">
         <span className="text-white">$ </span>

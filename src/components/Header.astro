@@ -7,7 +7,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
   <div class="container mx-auto px-4 flex justify-between items-center">
     <a href="/" class="text-xl font-semibold text-gruvbox-fg flex items-center">
       <span class="text-gruvbox-yellow mr-2 font-mono">~/</span>
-<span class="text-gruvbox-orange">Aidan O'Neil</span>
+      <span class="text-gruvbox-orange">Aidan O'Neil</span>
     </a>
 
     <nav>
@@ -15,28 +15,26 @@ const currentPath = pathname.slice(1); // remove the first "/"
         <li>
           <a
             href="/"
-            class={`hover:text-gruvbox-yellow transition-colors ${currentPath === '' ? 'text-gruvbox-yellow' : 'text-gruvbox-fg'}`}
+            class={`hover:text-gruvbox-yellow transition-colors ${
+              currentPath === "" ? "text-gruvbox-yellow" : "text-gruvbox-fg"
+            }`}
           >
             Home
           </a>
         </li>
         <li>
           <a
-            href="/resume"
-            class={`hover:text-gruvbox-yellow transition-colors ${currentPath === 'resume' ? 'text-gruvbox-yellow' : 'text-gruvbox-fg'}`}
-          >
-            Resume
-          </a>
-        </li>
-        <li>
-          <a
             href="/projects"
-            class={`hover:text-gruvbox-yellow transition-colors ${currentPath === 'projects' ? 'text-gruvbox-yellow' : 'text-gruvbox-fg'}`}
+            class={`hover:text-gruvbox-yellow transition-colors ${
+              currentPath === "projects"
+                ? "text-gruvbox-yellow"
+                : "text-gruvbox-fg"
+            }`}
           >
             Projects
           </a>
         </li>
-              </ul>
+      </ul>
     </nav>
   </div>
 </header>

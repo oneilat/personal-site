@@ -1,0 +1,206 @@
+%-------------------------
+% Resume in Latex
+% Template Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+\usepackage{times}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-10pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Aidan O'Neil} \\ \vspace{2pt}
+    \small \href{https://www.linkedin.com/in/aidan-o-neil}{\raisebox{-0.2\height}\faLinkedin\  \underline{linkedin.com/in/aidan-o-neil}} ~ \href{mailto:aidan.oneil@impiricus.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{aidan.oneil@impiricus.com}} %~
+    %\href{https://github.com/rhit-oneilat}{\raisebox{-0.2\height}\faGithub\  \underline{github.com/rhit-oneilat}}\\
+    \\ \vspace{2pt}
+
+    Houston, TX
+    \vspace{-8pt}
+\end{center}
+
+%-----------STATEMENT-----------
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Rose-Hulman Institute of Technology}{August 2022 -- February 2026}
+      {Bachelor of Science in Mathematics and Data Science and Artificial Intelligence, Minor in Economics}{Terre Haute, Indiana}
+      \resumeItemListStart
+        \resumeItem{Extracurriculars: Shakespeare Club President, Phi Gamma Delta Member}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Professional Experience}
+    \resumeSubHeadingListStart
+        \resumeSubheading
+          {Impiricus}{Nov. 2025 -- Present}
+          {Data Engineer}{Houston, TX}
+          \resumeItemListStart
+            \resumeItem{Own 3 production PostgreSQL schemas (~70 tables) within a multi-environment monolithic database supporting 15+ engineers across 3 product teams.}
+            \resumeItem{Optimized relational queries and indexing strategies, achieving up to 8$\times$ latency reduction on high-frequency read paths.}
+            \resumeItem{Designed and implemented a standardized 4-tier role-based access control (RBAC) framework across ~10 services, formalizing permissions for 50+ users and contributing to SOC2-aligned data governance.}
+            \resumeItem{Architected a large-scale scheduling optimization engine modeling up to 8M targets across 1000 campaigns over a 120-day planning horizon, replacing a manual allocation workflow.}
+          \resumeItemListEnd
+
+        \resumeSubheading
+          {Booz Allen Hamilton}{Jun. 2025 -- Aug. 2025}
+          {AI Engineering Intern}{Fort Meade, Maryland}
+          \resumeItemListStart
+            \resumeItem{Co-architected (team of 4) a full-stack AI deployment framework for on-prem GPU clusters, enabling multi-model inference workflows without predefined specifications.}
+            \resumeItem{Built a scalable RAG-enabled code retrieval system using GraphCodeBERT embeddings, designed to index repositories up to ~1GB for contextual code generation and QA.}
+            \resumeItem{Implemented Kubernetes-based deployment pipelines supporting concurrent LLM inference across 9 consumer GPUs (RTX 2080 $\times$4, RTX 2060 $\times$5), deploying up to 6 models simultaneously via vLLM.}
+            \resumeItem{Developed 5 reusable LangGraph-based orchestration workflows, establishing modular components for future AI project teams.}
+          \resumeItemListEnd
+
+        \resumeSubheading{O'Neil and Yuan Advisory}{Apr. 2023 -- Dec. 2024}
+          {Co-Founder and Technical Lead}{Houston, TX}
+          \resumeItemListStart
+            \resumeItem{Scoped, architected, and delivered 15 data pipelines for 11 nonprofit clients, handling datasets up to 40M historical records.}
+            \resumeItem{Designed cloud-native data infrastructure, reducing client reporting cycles by 70\% across manufacturing and retail engagements.}
+            \resumeItem{Developed custom ETL systems and ML-based forecasting tools, managing end-to-end technical delivery and client-facing project sign-off.}
+          \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+        \resumeProjectHeading
+           {\textbf{Dynamic Network Modeling of Market Phase Transitions}}{Aug. 2025 -- Feb. 2026}
+              \resumeItemListStart
+                \resumeItem{Developed a density-constrained dynamic graph model of financial markets using $N=52$ liquidity-weighted S\&P 500 constituents and sliding-window ($\omega=60$) correlation tensors.}
+                \resumeItem{Imposed fixed topological density ($\rho=0.10$, $K=132$ edges) to isolate structural changes independent of network sparsity, preserving signed edge information (correlation/anti-correlation).}
+                \resumeItem{Defined and quantified an ``Inhibition Vacuum'' metric $I(t)$ capturing the collapse of anti-correlated edges preceding systemic hypersynchrony.}
+                \resumeItem{Validated phase-transition significance using a 10,000-iteration stationary block bootstrap preserving temporal autocorrelation, observing statistically significant inhibition collapse ($p < 10^{-4}$) prior to the 2018 crash.}
+                \resumeItem{Performed density sensitivity analysis, identifying a sparsity-dependent signal regime (``Sparsity Cliff'' at $\rho \approx 0.12$) demonstrating structural signal degradation beyond biologically plausible connectivity thresholds.}
+              \resumeItemListEnd
+
+        \resumeProjectHeading
+              {\textbf{Blockchain Fraud Detection via Graph-Based Feature Engineering}}{Feb. 2024 -- Aug. 2024}
+              \resumeItemListStart
+                \resumeItem{Engineered spectral and structural graph features from a Bitcoin transaction network (203K nodes, 234K edges) for supervised fraud classification.}
+                \resumeItem{Extracted centrality, community structure, and embedding-based features to capture latent transaction topology.}
+                \resumeItem{Trained XGBoost and LightGBM classifiers achieving 82\% accuracy, improving baseline performance by 8\%.}
+              \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, SQL, Rust, Go, R, JavaScript, Bash/Zsh, \LaTeX} \\
+     \textbf{Data Engineering \& Infrastructure}{: PostgreSQL, MongoDB, Redis, Apache Spark, Kubernetes, Docker, AWS (S3, Lambda, SageMaker, Glue, Athena), pgvector, Serverless Architectures} \\
+     \textbf{Machine Learning \& AI}{: PyTorch, scikit-learn, XGBoost, LightGBM, LangGraph, vLLM, RAG, GraphCodeBERT, Transformers} \\
+     \textbf{Advanced Mathematics}{: Spectral Graph Theory, Control Theory, Network Science, Topology, Bayesian Inference, Category Theory} \\
+     \textbf{Developer Tools \& Visualization}{: Git, Neovim, Linux/Unix, Tableau, Plotly, Seaborn, React}
+    }}
+ \end{itemize}
+
+\section{Additional Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Mandarin Chinese (HSK 3.5)} \\
+     \textbf{Professional Operations}{: Technical Documentation, Stakeholder Management, Agile/Scrum, Cross-functional Team Leadership}
+    }}
+ \end{itemize}
+
+\end{document}

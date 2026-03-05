@@ -1,60 +1,70 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 // Project data
 const projects = [
   {
     title: "This Website",
-        description: "Built with Atro, Tailwind CSS, React, and Three.js. Hosted on Cloudflare Pages. Serves as a portfolio and blog.",
-        tags: ["Web Development", "React", "Tailwind CSS", "Three.js"],
+    description:
+      "Built with Atro, Tailwind CSS, React, and Three.js. Hosted on Cloudflare Pages. Serves as a portfolio and blog.",
+    tags: ["Web Development", "React", "Tailwind CSS", "Three.js"],
     image: "./forecast-project.jpg",
-        github: "https://github.com/rhit-oneilat/personal-site",
+    github: "https://github.com/rhit-oneilat/personal-site",
   },
-
 ];
 ---
 
 <Layout title="Projects | Aidan O'Neil">
-
   <main class="max-w-5xl mx-auto px-4 py-12">
     <h1 class="text-4xl font-bold text-gruvbox-fg mb-8">Projects</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {projects.map(project => (
-        <div class="bg-gruvbox-bg1 rounded-lg shadow-lg overflow-hidden">
-          <div class="h-48 bg-gruvbox-bg2 flex items-center justify-center">
-            {project.image ?
-              <img src={project.image} alt={project.title} class="w-full h-full object-cover" /> :
-              <div class="text-6xl text-gruvbox-fg opacity-20">⚙️</div>
-            }
-          </div>
-
-          <div class="p-6">
-            <h3 class="text-xl font-semibold text-gruvbox-yellow">{project.title}</h3>
-
-            <div class="flex flex-wrap gap-2 mt-3">
-              {project.tags.map(tag => (
-                <span class="px-2 py-1 bg-gruvbox-bg2 rounded text-xs text-gruvbox-green">{tag}</span>
-              ))}
+      {
+        projects.map((project) => (
+          <div class="bg-gruvbox-bg1 shadow-lg overflow-hidden">
+            <div class="h-48 bg-gruvbox-bg2 flex items-center justify-center">
+              {project.image ? (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <div class="text-6xl text-gruvbox-fg opacity-20">⚙️</div>
+              )}
             </div>
 
-            <p class="mt-4 text-gruvbox-fg">{project.description}</p>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gruvbox-yellow">
+                {project.title}
+              </h3>
 
-            <div class="mt-6">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block px-4 py-2 bg-gruvbox-bg2 hover:bg-gruvbox-bg3 rounded-md transition-colors text-gruvbox-fg"
-              >
-                View Project
-              </a>
+              <div class="flex flex-wrap gap-2 mt-3">
+                {project.tags.map((tag) => (
+                  <span class="px-2 py-1 bg-gruvbox-bg2 text-xs text-gruvbox-green">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <p class="mt-4 text-gruvbox-fg">{project.description}</p>
+
+              <div class="mt-6">
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-block px-4 py-2 bg-gruvbox-bg2 hover:bg-gruvbox-bg3 transition-colors text-gruvbox-fg"
+                >
+                  View Project
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </main>
 </Layout>
