@@ -23,48 +23,23 @@ export default function SkillsBoard() {
 
   return (
     <div className="w-full py-12 px-4 text-gruvbox-fg flex flex-col items-center">
-      {/* Dynamic Skill Write-up Area */}
-      <div className={`w-full max-w-4xl mb-12 p-8 border border-gruvbox-bg3 bg-gruvbox-bg0 transition-all duration-500 overflow-hidden ${selectedSkill ? 'opacity-100 min-h-[200px]' : 'opacity-0 h-0 pointer-events-none'}`}>
-        {selectedSkill && (
-          <div className="animate-fade-in space-y-4">
-            <div className="flex items-center gap-4 text-gruvbox-orange">
-              <span className="text-2xl font-bold"></span>
-              <h4 className="text-2xl font-bold uppercase tracking-widest">{selectedSkill}</h4>
-            </div>
-            <div className="p-4 bg-gruvbox-bg border-l-4 border-gruvbox-orange/50">
-              <p className="text-lg leading-relaxed text-gruvbox-fg">
-                {/* User will fill this personally */}
-                [ Technical documentation and personal experience with {selectedSkill} will be entered here. ]
-              </p>
-              <div className="mt-4 flex gap-2">
-                <span className="w-4 h-4 bg-gruvbox-orange animate-pulse"></span>
-              </div>
-            </div>
-            <button
-              onClick={() => setSelectedSkill(null)}
-              className="mt-4 text-gruvbox-gray hover:text-gruvbox-fg transition-colors"
-            >
-              [ close_details ]
-            </button>
-          </div>
-        )}
-      </div>
+      {/* Selection detail area will now be rendered inline within category groups */}
 
       {/* Use a wider grid that fills the available space */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 w-full">
         {Object.entries(skills).map(([category, items]) => (
-          <div key={category} className="bg-gruvbox-bg p-8 border border-transparent hover:border-gruvbox-bg3 transition-all duration-300">
+          <div key={category} className="bg-gruvbox-bg p-8 border border-transparent hover:border-gruvbox-bg3 transition-all duration-300 flex flex-col">
             <h3 className={`text-2xl font-bold mb-6 ${gruvboxColors[category]}`}>
               {category}
             </h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 mb-6">
               {items.map((skill) => (
                 <button
                   key={skill}
                   onClick={() => setSelectedSkill(selectedSkill === skill ? null : skill)}
                   className={`px-6 py-3 text-base font-medium transition-all duration-200 ${highlighted === skill || selectedSkill === skill
-                      ? 'bg-gruvbox-orange text-gruvbox-bg0'
-                      : 'bg-gruvbox-bg3 text-gruvbox-fg'
+                    ? 'bg-gruvbox-orange text-gruvbox-bg0'
+                    : 'bg-gruvbox-bg3 text-gruvbox-fg'
                     } hover:scale-105 active:scale-95`}
                   onMouseEnter={() => setHighlighted(skill)}
                   onMouseLeave={() => setHighlighted(null)}
@@ -73,6 +48,30 @@ export default function SkillsBoard() {
                 </button>
               ))}
             </div>
+
+            {/* Inline Detail View */}
+            {selectedSkill && items.includes(selectedSkill) && (
+              <div className="animate-fade-in space-y-4 mt-4 pt-6 border-t border-gruvbox-bg3">
+                <div className="flex items-center gap-4 text-gruvbox-orange">
+                  <span className="text-xl font-bold"></span>
+                  <h4 className="text-xl font-bold">{selectedSkill}</h4>
+                </div>
+                <div className="p-4 bg-gruvbox-bg border-l-4 border-gruvbox-orange/50">
+                  <p className="text-base leading-relaxed text-gruvbox-fg">
+                    [ Personal experience and technical depth with {selectedSkill} will be detailed here. ]
+                  </p>
+                  <div className="mt-3 flex gap-2">
+                    <span className="w-3 h-3 bg-gruvbox-orange animate-pulse"></span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setSelectedSkill(null)}
+                  className="text-sm text-gruvbox-gray hover:text-gruvbox-fg transition-colors"
+                >
+                  [ close ]
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>

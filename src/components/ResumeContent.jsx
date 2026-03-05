@@ -49,15 +49,25 @@ const ResumeContent = () => {
                 </div>
             </section>
 
-            {/* Education Section - High Level Summary */}
-            <section className="space-y-12">
-                <div className="border-l-4 border-gruvbox-aqua pl-8 py-4 bg-gruvbox-bg/20 backdrop-blur-sm">
-                    <h2 className="text-3xl font-bold text-gruvbox-aqua mb-2">Academic Foundation</h2>
-                    <h3 className="text-2xl font-bold text-gruvbox-fg">Rose-Hulman Institute of Technology</h3>
-                    <p className="text-xl text-gruvbox-fg2 uppercase tracking-wider">
-                        B.S. Mathematics & Data Science and Artificial Intelligence
-                    </p>
-                    <p className="text-gruvbox-gray mt-2 italic">Minor in Economics • Class of 2026</p>
+            {/* Education Section */}
+            <section className="space-y-16">
+                <h2 className="text-3xl font-bold text-gruvbox-yellow inline-block border-b-4 border-gruvbox-yellow/30 pb-2">
+                    Education
+                </h2>
+
+                <div className="space-y-12">
+                    <div className="group relative">
+                        <span className="text-sm font-bold text-gruvbox-gray block mb-2">2022 - 2026 (Expected)</span>
+                        <h3 className="text-2xl font-bold text-gruvbox-aqua group-hover:text-gruvbox-blue transition-colors">
+                            Rose-Hulman Institute of Technology
+                        </h3>
+                        <p className="text-xl text-gruvbox-fg2 mb-4">
+                            B.S. Mathematics & Data Science / Artificial Intelligence
+                        </p>
+                        <div className="text-lg leading-relaxed text-gruvbox-fg border-l-2 border-gruvbox-bg3 pl-6">
+                            Minor in Economics. Focused on the intersection of mathematical theory and practical AI engineering.
+                        </div>
+                    </div>
                 </div>
             </section>
 
