@@ -1,0 +1,95 @@
+---
+import { profile } from '../data/profile.js';
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 font-mono">
+  <div class="lg:col-span-8 space-y-16">
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold text-gruvbox-yellow inline-block border-b-4 border-gruvbox-yellow/30 pb-2">Education</h2>
+      <div>
+        <p class="text-sm font-bold text-gruvbox-gray">{profile.education.dates}</p>
+        <h3 class={`mt-2 text-2xl font-bold ${profile.education.colorClass}`}>{profile.education.school}</h3>
+        <p class="mt-2 text-xl text-gruvbox-fg2">{profile.education.degree}</p>
+        <p class="mt-4 border-l-2 border-gruvbox-bg3 pl-6 text-lg text-gruvbox-fg">{profile.education.location}</p>
+      </div>
+    </section>
+
+    <section class="space-y-12">
+      <h2 class="text-3xl font-bold text-gruvbox-yellow inline-block border-b-4 border-gruvbox-yellow/30 pb-2">Professional Experience</h2>
+      {profile.experience.map((job) => (
+        <article>
+          <p class="text-sm font-bold text-gruvbox-gray">{job.dates} · {job.location}</p>
+          <h3 class={`mt-2 text-2xl font-bold ${job.colorClass}`}>{job.org}</h3>
+          <p class="mt-1 text-gruvbox-fg2">{job.role}</p>
+          <ul class="mt-4 space-y-3">
+            {job.bullets.map((bullet) => (
+              <li class="border-l-2 border-gruvbox-bg3 pl-6 text-lg leading-relaxed text-gruvbox-fg">{bullet}</li>
+            ))}
+          </ul>
+          <div class="mt-6 space-y-4">
+            {job.workstreams.map((stream) => (
+              <div id={stream.id || undefined} class="border border-gruvbox-bg3 bg-gruvbox-bg/30 p-6">
+                <h4 class={`text-xl font-bold ${stream.colorClass}`}>{stream.title}</h4>
+                <p class="mt-1 text-sm font-bold text-gruvbox-gray">{stream.dates}</p>
+                <ul class="mt-4 space-y-3">
+                  {stream.bullets.map((bullet) => (
+                    <li class="border-l-2 border-gruvbox-bg3 pl-6 text-lg leading-relaxed text-gruvbox-fg">{bullet}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="space-y-6">
+      <h2 class="text-3xl font-bold text-gruvbox-yellow inline-block border-b-4 border-gruvbox-yellow/30 pb-2">Awards & Recognition</h2>
+      <ul class="space-y-3">
+        {profile.awards.map((award) => (
+          <li class="border-l-2 border-gruvbox-bg3 pl-6 text-lg font-bold text-gruvbox-fg">{award}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="space-y-10">
+      <h2 class="text-3xl font-bold text-gruvbox-yellow inline-block border-b-4 border-gruvbox-yellow/30 pb-2">Projects</h2>
+      {profile.projects.map((project) => (
+        <article id={project.id || undefined}>
+          <h3 class={`text-2xl font-bold ${project.colorClass}`}>{project.title}</h3>
+          <p class="mt-1 text-sm font-bold text-gruvbox-gray">{project.dates}</p>
+          <ul class="mt-4 space-y-3">
+            {project.bullets.map((bullet) => (
+              <li class="border-l-2 border-gruvbox-bg3 pl-6 text-lg leading-relaxed text-gruvbox-fg">{bullet}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+  </div>
+
+  <aside class="lg:col-span-4 h-fit border border-gruvbox-bg3 bg-gruvbox-bg/30 p-10">
+    <section>
+      <h2 class="text-2xl font-bold text-gruvbox-aqua">Technical Skills</h2>
+      <div class="mt-6 space-y-5">
+        {profile.technicalSkills.map((skill) => (
+          <p>
+            <span class="block font-bold text-gruvbox-yellow">{skill.label}</span>
+            <span class="mt-1 block text-gruvbox-fg2">{skill.items}</span>
+          </p>
+        ))}
+      </div>
+    </section>
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold text-gruvbox-aqua">Additional Skills</h2>
+      <div class="mt-6 space-y-5">
+        {profile.additionalSkills.map((skill) => (
+          <p>
+            <span class="block font-bold text-gruvbox-yellow">{skill.label}</span>
+            <span class="mt-1 block text-gruvbox-fg2">{skill.items}</span>
+          </p>
+        ))}
+      </div>
+    </section>
+  </aside>
+</div>
