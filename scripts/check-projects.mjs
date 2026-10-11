@@ -19,6 +19,15 @@ if (!record.includes('project.id')) errors.push('project ids are not rendered');
 if (record.includes('will be detailed here')) errors.push('skill placeholder remains');
 if (record.includes('Thespian')) errors.push('old Beyond Work copy remains');
 
+for (const file of ['src/components/ResumeContent.jsx', 'src/components/SkillsBoard.jsx']) {
+  if (fs.existsSync(file)) errors.push(file + ' still exists');
+}
+const source = fs.readFileSync('src/components/HomeComponent.jsx', 'utf8')
+  + fs.readFileSync('src/pages/projects.astro', 'utf8');
+if (source.includes('ResumeContent') || source.includes('SkillsBoard')) {
+  errors.push('old resume components are still imported');
+}
+
 if (errors.length > 0) {
   console.error(errors.join('\n'));
   process.exit(1);
