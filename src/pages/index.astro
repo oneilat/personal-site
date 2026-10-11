@@ -1,5 +1,7 @@
 ---
+import Header from '../components/Header.astro';
 import HomeComponent from '../components/HomeComponent.jsx';
+import { profile } from '../data/profile.js';
 import '../styles/global.css';
 ---
 
@@ -11,6 +13,24 @@ import '../styles/global.css';
     <title>Aidan O'Neil</title>
   </head>
   <body class="m-0 p-0">
+    <Header />
     <HomeComponent client:load />
+    <section id="proofs" class="relative z-10 w-full max-w-6xl mx-auto px-8 pb-24">
+      <div class="space-y-4">
+        {profile.homeProofs.map((row) => (
+          <a
+            href={`/projects#${row.id}`}
+            class="grid grid-cols-[4px_1fr_auto] items-center gap-4 border border-gruvbox-bg3 bg-gruvbox-bg/70 px-4 py-4"
+          >
+            <span class={`block h-8 w-1 ${row.barClass}`}></span>
+            <span>
+              <span class="block text-xs font-bold tracking-wide text-gruvbox-gray">{row.kicker}</span>
+              <span class="block text-xl font-bold text-gruvbox-fg">{row.title}</span>
+            </span>
+            <span class="text-sm text-gruvbox-fg4">{row.date}</span>
+          </a>
+        ))}
+      </div>
+    </section>
   </body>
 </html>

@@ -3,7 +3,7 @@ const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
 ---
 
-<header class="bg-gruvbox-bg1 shadow-md py-4">
+<header class="relative z-20 bg-gruvbox-bg1 shadow-md py-4">
   <div class="container mx-auto px-4 flex justify-between items-center">
     <a href="/" class="text-xl font-semibold text-gruvbox-fg flex items-center">
       <span class="text-gruvbox-yellow mr-2 font-mono">~/</span>

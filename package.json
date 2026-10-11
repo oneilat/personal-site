@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "node scripts/check-profile.mjs"
+    "check": "node scripts/check-profile.mjs && node scripts/check-home.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.1",
