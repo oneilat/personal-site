@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const published = await getCollection('projects', ({ data }) => data.publish);
+  return published.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} | Aidan O'Neil`}>
+  <article class="max-w-prose">
+    <p class="text-xs font-bold tracking-wide text-gruvbox-gray">{entry.data.kicker}</p>
+    <h1 class="mt-2 text-3xl font-bold text-gruvbox-yellow">{entry.data.title}</h1>
+    <div class="mt-4 h-[3px] w-[44px] bg-gruvbox-yellow"></div>
+    <div class="article-body mt-8">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .article-body :global(h2),
+  .article-body :global(h3) {
+    @apply text-gruvbox-yellow font-bold mt-6;
+  }
+  .article-body :global(p),
+  .article-body :global(li) {
+    @apply text-gruvbox-fg mt-4;
+  }
+  .article-body :global(a) {
+    @apply text-gruvbox-yellow underline;
+  }
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    @apply pl-5;
+  }
+  .article-body :global(pre),
+  .article-body :global(code) {
+    @apply bg-gruvbox-bg1;
+  }
+  .article-body :global(pre) {
+    @apply p-4 mt-4 overflow-x-auto;
+  }
+</style>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaChevronDown } from 'react-icons/fa';
 import { profile } from '../data/profile.js';
 
-export default function HomeComponent() {
+export default function HomeComponent({ showProofs = false }) {
   const [P5Sketch, setP5Sketch] = useState(null);
 
   useEffect(() => {
@@ -70,13 +70,15 @@ export default function HomeComponent() {
         </div>
 
         {/* Scroll Indicator */}
-        <button
-          onClick={() => document.getElementById('proofs')?.scrollIntoView({ behavior: 'smooth' })}
-          className="absolute bottom-10 animate-bounce text-gruvbox-yellow text-4xl hover:text-gruvbox-orange transition-colors duration-300 cursor-pointer focus:outline-none"
-          aria-label="Scroll to Resume"
-        >
-          <FaChevronDown />
-        </button>
+        {showProofs ? (
+          <button
+            onClick={() => document.getElementById('proofs')?.scrollIntoView({ behavior: 'smooth' })}
+            className="absolute bottom-10 animate-bounce text-gruvbox-yellow text-4xl hover:text-gruvbox-orange transition-colors duration-300 cursor-pointer focus:outline-none"
+            aria-label="Scroll to Resume"
+          >
+            <FaChevronDown />
+          </button>
+        ) : null}
       </div>
     </div>
   );

@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { publishedProjects } from '../../data/published-projects.js';
+import { profile } from '../../data/profile.js';
+
+const published = publishedProjects(await getCollection('projects'));
+---
+
+<Layout title="Projects | Aidan O'Neil">
+  <h1 class="text-3xl font-bold text-gruvbox-yellow">Projects</h1>
+  {published.length === 0 ? (
+    <a
+      href={profile.links.resume}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-8 inline-block px-6 py-3 text-lg bg-gruvbox-bg1 border border-gruvbox-bg3 font-bold hover:bg-gruvbox-bg2 transition-all duration-300"
+    >
+      View My Resume
+    </a>
+  ) : (
+    <div class="mt-8 max-w-2xl">
+      {published.map((entry) => (
+        <a href={`/projects/${entry.id}`} class="block border-b border-gruvbox-bg2 py-4">
+          <span class="block text-xs font-bold tracking-wide text-gruvbox-gray">{entry.data.kicker}</span>
+          <span class="block text-xl font-bold text-gruvbox-fg">{entry.data.title}</span>
+          <span class="block text-sm text-gruvbox-fg4">{entry.data.date}</span>
+        </a>
+      ))}
+    </div>
+  )}
+</Layout>
