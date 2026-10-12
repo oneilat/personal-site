@@ -24,7 +24,7 @@ const isHome = Astro.url.pathname === '/';
     <title>{title}</title>
   </head>
   <body class="m-0 flex min-h-screen flex-col p-0">
-    <div class:list={['fixed inset-0 z-0 pointer-events-none', isHome ? 'opacity-100' : 'opacity-40']}>
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-100">
       <div transition:persist="topo">
         <TopoField client:load />
       </div>
@@ -52,3 +52,26 @@ const isHome = Astro.url.pathname === '/';
     height: 100%;
   }
 </style>
+
+<script>
+  import { animateOpening, setOpening } from '../data/field-opening.js';
+
+  if (!window.__fieldPartBound) {
+    window.__fieldPartBound = true;
+    setOpening(location.pathname === '/' ? 0 : 1);
+    document.addEventListener('astro:before-preparation', (event) => {
+      const fromHome = event.from.pathname === '/';
+      const toHome = event.to.pathname === '/';
+      if (fromHome && !toHome) {
+        const original = event.loader;
+        event.loader = async () => {
+          await animateOpening(1);
+          await original();
+        };
+      }
+    });
+    document.addEventListener('astro:after-swap', () => {
+      if (location.pathname === '/') animateOpening(0);
+    });
+  }
+</script>

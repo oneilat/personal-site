@@ -1,5 +1,7 @@
 import React from 'react';
 import Sketch from 'react-p5';
+import { placedX } from '../data/field-part.js';
+import { getOpening } from '../data/field-opening.js';
 
 const brightGruvbox = {
   bg: '#1d2021',
@@ -103,7 +105,7 @@ function drawDotsAtContour(p5, target, threshold) {
     for (let y = 1; y < rows - 1; y++) {
       let val = terrain[x][y];
       if (Math.abs(val - target) < threshold) {
-        let px = x * scl;
+        let px = placedX(x * scl, p5.width, getOpening());
         let py = y * scl;
         p5.ellipse(px, py, 1.2, 1.2);
       }
