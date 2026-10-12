@@ -49,6 +49,8 @@ if (!layout.includes('<TopoField')) errors.push('layout does not render the fiel
 
 const sketch = fs.readFileSync('src/components/P5Sketch.jsx', 'utf8');
 if (!sketch.includes('shoreDistance')) errors.push('sketch does not use the tide shore');
+if (!sketch.includes('shore[y][side]')) errors.push('sketch does not shape the shore by row');
+if (sketch.includes('shoreDistance(p5.width, opening, val)')) errors.push('sketch cuts each contour on a straight line');
 if (sketch.includes('placedX')) errors.push('sketch still uses the rectangular placement');
 if (!sketch.includes('getOpening')) errors.push('sketch does not read the opening');
 if (!sketch.includes("console.log('Drawing contour at level:'")) errors.push('contour log was removed');

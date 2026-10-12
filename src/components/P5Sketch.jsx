@@ -19,7 +19,7 @@ const brightGruvbox = {
 
 const scl = 5;
 const LOOP_DURATION = 1800;
-let cols, rows, terrain = [];
+let cols, rows, terrain = [], shore = [];
 
 export default function P5Sketch() {
   const setup = (p5, canvasParentRef) => {
@@ -33,6 +33,7 @@ export default function P5Sketch() {
     p5.background(brightGruvbox.bg);
     const theta = p5.TWO_PI * (p5.frameCount % LOOP_DURATION) / LOOP_DURATION;
     generateTerrain(p5, theta);
+    generateShore(p5, theta);
     drawContours(p5);
   };
 
@@ -74,6 +75,18 @@ function generateTerrain(p5, theta) {
   }
 }
 
+// Contour dots all sit at their own level, so the shore needs a separate wave or every color cuts straight.
+function generateShore(p5, theta) {
+  const R = 15;
+  const loopAngle = theta * 0.025;
+  const loopX = R * Math.cos(loopAngle);
+  const loopY = R * Math.sin(loopAngle);
+  shore = Array.from({ length: rows }, (_, y) => [-1, 1].map((side) => {
+    const n = p5.noise(y * 0.02 + loopX, side * 40 + loopY);
+    return (n - 0.3) / 0.4;
+  }));
+}
+
 function drawContours(p5) {
   const contourLevels = [
     { level: -50, color: brightGruvbox.blue },
@@ -108,7 +121,8 @@ function drawDotsAtContour(p5, target, threshold) {
       if (Math.abs(val - target) < threshold) {
         let px = x * scl;
         let py = y * scl;
-        if (Math.abs(px - p5.width / 2) < shoreDistance(p5.width, opening, val)) continue;
+        const side = px < p5.width / 2 ? 0 : 1;
+        if (Math.abs(px - p5.width / 2) < shoreDistance(p5.width, opening, shore[y][side])) continue;
         p5.ellipse(px, py, 1.2, 1.2);
       }
     }
