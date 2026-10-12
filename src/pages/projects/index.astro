@@ -8,7 +8,7 @@ const published = publishedProjects(await getCollection('projects'));
 ---
 
 <Layout title="Projects | Aidan O'Neil">
-  <h1 class="text-3xl font-bold text-gruvbox-yellow">Projects</h1>
+  <h1 transition:name="stage" class="text-3xl font-bold text-gruvbox-yellow">Projects</h1>
   {published.length === 0 ? (
     <a
       href={profile.links.resume}

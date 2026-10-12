@@ -1,13 +1,16 @@
 ---
-import Header from '../components/Header.astro';
+import { ClientRouter } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
+import TopoField from '../components/TopoField.jsx';
 import '../styles/global.css';
 
 export interface Props {
   title: string;
+  fullBleed?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, fullBleed = false } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 ---
 
 <!DOCTYPE html>
@@ -17,13 +20,27 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
     <title>{title}</title>
   </head>
-  <body class="flex flex-col min-h-screen">
-    <Header />
-    <main class="flex-grow container mx-auto px-4 py-8">
-      <slot />
-    </main>
+  <body class="m-0 flex min-h-screen flex-col p-0">
+    <div class:list={['fixed inset-0 z-0 pointer-events-none', isHome ? 'opacity-100' : 'opacity-40']}>
+      <div transition:persist="topo">
+        <TopoField client:load />
+      </div>
+    </div>
+    {!isHome && (
+      <a href="/" aria-label="Home" class="fixed top-4 left-4 z-20 font-mono text-gruvbox-yellow">~/</a>
+    )}
+    {fullBleed ? (
+      <div class="relative z-10">
+        <slot />
+      </div>
+    ) : (
+      <main class="relative z-10 container mx-auto flex-grow px-4 py-8">
+        <slot />
+      </main>
+    )}
   </body>
 </html>
 

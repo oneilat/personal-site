@@ -1,41 +1,36 @@
 ---
-import Header from '../components/Header.astro';
+import Layout from '../layouts/Layout.astro';
 import HomeComponent from '../components/HomeComponent.jsx';
 import { getCollection } from 'astro:content';
 import { barClass, publishedProjects } from '../data/published-projects.js';
-import '../styles/global.css';
 
 const published = publishedProjects(await getCollection('projects'));
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Aidan O'Neil</title>
-  </head>
-  <body class="m-0 p-0">
-    <Header />
-    <HomeComponent client:load showProofs={published.length > 0} />
-    {published.length > 0 && (
-      <section id="proofs" class="relative z-10 w-full max-w-6xl mx-auto px-8 pb-24">
-        <div class="space-y-4">
-          {published.map((entry) => (
-            <a
-              href={`/projects/${entry.id}`}
-              class="grid grid-cols-[4px_1fr_auto] items-center gap-4 border border-gruvbox-bg3 bg-gruvbox-bg/70 px-4 py-4"
-            >
-              <span class={`block h-8 w-1 ${barClass[entry.data.color]}`}></span>
-              <span>
-                <span class="block text-xs font-bold tracking-wide text-gruvbox-gray">{entry.data.kicker}</span>
-                <span class="block text-xl font-bold text-gruvbox-fg">{entry.data.title}</span>
-              </span>
-              <span class="text-sm text-gruvbox-fg4">{entry.data.date}</span>
-            </a>
-          ))}
-        </div>
-      </section>
-    )}
-  </body>
-</html>
+<Layout title="Aidan O'Neil" fullBleed>
+  <div class="relative flex min-h-svh w-full flex-col items-center justify-center px-4">
+    <div transition:name="stage" class="max-w-2xl border border-gruvbox-bg3 bg-gruvbox-bg/40 p-8 text-center shadow-2xl backdrop-blur-sm md:p-12">
+      <HomeComponent client:load />
+    </div>
+    <a href="/projects" class="absolute bottom-10 animate-bounce text-2xl font-bold text-gruvbox-yellow transition-colors duration-300 hover:text-gruvbox-orange">Projects</a>
+  </div>
+  {published.length > 0 && (
+    <section id="proofs" class="relative z-10 mx-auto w-full max-w-6xl px-8 pb-24">
+      <div class="space-y-4">
+        {published.map((entry) => (
+          <a
+            href={`/projects/${entry.id}`}
+            class="grid grid-cols-[4px_1fr_auto] items-center gap-4 border border-gruvbox-bg3 bg-gruvbox-bg/70 px-4 py-4"
+          >
+            <span class={`block h-8 w-1 ${barClass[entry.data.color]}`}></span>
+            <span>
+              <span class="block text-xs font-bold tracking-wide text-gruvbox-gray">{entry.data.kicker}</span>
+              <span class="block text-xl font-bold text-gruvbox-fg">{entry.data.title}</span>
+            </span>
+            <span class="text-sm text-gruvbox-fg4">{entry.data.date}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</Layout>

@@ -24,6 +24,10 @@ if (!article.includes('max-w-prose')) errors.push('article column is not the rea
 if (!article.includes('w-[44px]')) errors.push('yellow rule is missing');
 if (!article.includes('h-[3px]')) errors.push('yellow rule height is missing');
 if (!article.includes('| Aidan O\'Neil')) errors.push('article title suffix is missing');
+if (index.includes('<Header')) errors.push('Projects still renders Header');
+if (article.includes('<Header')) errors.push('article still renders Header');
+if (!index.includes('transition:name="stage"')) errors.push('Projects heading has no stage name');
+if (!article.includes('transition:name="stage"')) errors.push('article heading has no stage name');
 
 for (const file of ['src/components/ResumeContent.jsx', 'src/components/SkillsBoard.jsx']) {
   if (fs.existsSync(file)) errors.push(file + ' still exists');
