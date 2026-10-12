@@ -48,7 +48,8 @@ if (!layout.includes('>~/</a>')) errors.push('home mark text is missing');
 if (!layout.includes('<TopoField')) errors.push('layout does not render the field');
 
 const sketch = fs.readFileSync('src/components/P5Sketch.jsx', 'utf8');
-if (!sketch.includes('placedX')) errors.push('sketch does not place contour dots');
+if (!sketch.includes('shoreDistance')) errors.push('sketch does not use the tide shore');
+if (sketch.includes('placedX')) errors.push('sketch still uses the rectangular placement');
 if (!sketch.includes('getOpening')) errors.push('sketch does not read the opening');
 if (!sketch.includes("console.log('Drawing contour at level:'")) errors.push('contour log was removed');
 if (!sketch.includes('level: -50')) errors.push('contour levels changed');
