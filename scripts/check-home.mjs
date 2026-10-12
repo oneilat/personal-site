@@ -36,6 +36,8 @@ if (!layout.includes('<ClientRouter />')) errors.push('layout is missing the cli
 if (!layout.includes('transition:persist="topo"')) errors.push('field is not persisted');
 if (layout.includes('opacity-40')) errors.push('field is still dimmed');
 if (!layout.includes('opacity-100')) errors.push('field wrapper is not fully opaque');
+if (!layout.includes('w-[88%]')) errors.push('phone content is not in the open corridor');
+if (!layout.includes('md:w-[56%]')) errors.push('desktop content is not in the open corridor');
 if (!layout.includes('astro:before-preparation')) errors.push('layout does not delay navigation while the field opens');
 if (!layout.includes('astro:after-swap')) errors.push('layout does not close the field after returning home');
 if (!layout.includes('animateOpening')) errors.push('layout does not animate the opening');

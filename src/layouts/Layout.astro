@@ -37,7 +37,7 @@ const isHome = Astro.url.pathname === '/';
         <slot />
       </div>
     ) : (
-      <main class="relative z-10 container mx-auto flex-grow px-4 py-8">
+      <main class="relative z-10 mx-auto w-[88%] flex-grow px-4 py-8 md:w-[56%]">
         <slot />
       </main>
     )}
