@@ -35,6 +35,7 @@ export default function P5Sketch() {
     generateTerrain(p5, theta);
     generateShore(p5, theta);
     drawContours(p5);
+    drawShoreline(p5);
   };
 
   const windowResized = (p5) => {
@@ -83,7 +84,7 @@ function generateShore(p5, theta) {
   const loopY = R * Math.sin(loopAngle);
   shore = Array.from({ length: rows }, (_, y) => [-1, 1].map((side) => {
     const n = p5.noise(y * 0.02 + loopX, side * 40 + loopY);
-    return (n - 0.3) / 0.4;
+    return (n - 0.36) / 0.42;
   }));
 }
 
@@ -110,6 +111,29 @@ function drawContours(p5) {
 
     console.log('Drawing contour at level:', level, 'with color:', color);
     drawDotsAtContour(p5, level, 1.3);
+  }
+}
+
+function drawShoreline(p5) {
+  const opening = getOpening();
+  if (opening < 0.02) return;
+  const col = p5.color(brightGruvbox.gray3);
+  col.setAlpha(220);
+  p5.noStroke();
+  p5.fill(col);
+  const center = p5.width / 2;
+  for (let y = 1; y < rows - 1; y++) {
+    const y0 = y * scl;
+    const next = Math.min(y + 1, rows - 1);
+    const left0 = center - shoreDistance(p5.width, opening, shore[y][0]);
+    const left1 = center - shoreDistance(p5.width, opening, shore[next][0]);
+    const right0 = center + shoreDistance(p5.width, opening, shore[y][1]);
+    const right1 = center + shoreDistance(p5.width, opening, shore[next][1]);
+    for (let py = y0; py < y0 + scl; py += 2) {
+      const t = (py - y0) / scl;
+      p5.ellipse(left0 + (left1 - left0) * t, py, 1.2, 1.2);
+      p5.ellipse(right0 + (right1 - right0) * t, py, 1.2, 1.2);
+    }
   }
 }
 

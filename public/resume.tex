@@ -122,9 +122,6 @@
     \resumeSubheading
       {Rose-Hulman Institute of Technology}{August 2022 -- February 2026}
       {Bachelor of Science in Mathematics and Data Science and Artificial Intelligence, Minor in Economics}{Terre Haute, Indiana}
-      \resumeItemListStart
-        \resumeItem{Extracurriculars: Shakespeare Club President, Phi Gamma Delta Member}
-      \resumeItemListEnd
   \resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------
@@ -134,10 +131,38 @@
           {Impiricus}{Nov. 2025 -- Present}
           {Data Engineer}{Houston, TX}
           \resumeItemListStart
-            \resumeItem{Own 3 production PostgreSQL schemas (~70 tables) within a multi-environment monolithic database supporting 15+ engineers across 3 product teams.}
-            \resumeItem{Optimized relational queries and indexing strategies, achieving up to 8$\times$ latency reduction on high-frequency read paths.}
-            \resumeItem{Designed and implemented a standardized 4-tier role-based access control (RBAC) framework across ~10 services, formalizing permissions for 50+ users and contributing to SOC2-aligned data governance.}
-            \resumeItem{Architected a large-scale scheduling optimization engine modeling up to 8M targets across 1000 campaigns over a 120-day planning horizon, replacing a manual allocation workflow.}
+            \resumeItem{Lead engineer and architect of an interconnected analytics vertical (data warehouse, behavioral-scoring, and optimization-based scheduling), built and operated end-to-end across 5 production PostgreSQL/Aurora schemas and supporting 15+ engineers across 3 product teams.}
+          \resumeItemListEnd
+
+          \resumeSubSubheading{HAIRGEL: Cross-Channel Dimensional Data Warehouse}{Apr. 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Architected the system of record for cross-channel campaign engagement analytics: a 5-schema PostgreSQL/Aurora warehouse on a Kimball star schema with SCD Type-2 dimensions, a $\sim$12M-row partitioned fact table, and a $\sim$9M-row HCP dimension.}
+            \resumeItem{Accelerated consumer queries 14$\times$--130$\times$ over the legacy OLTP path at exact 1:1 row parity, through a zero-failure hourly \texttt{pg\_cron} ETL pipeline.}
+            \resumeItem{Root-caused a multi-day silent production failure (PostgreSQL drops inherited group-role privileges after an in-procedure \texttt{COMMIT} while \texttt{has\_table\_privilege} still reports TRUE); resolved with direct grants and \texttt{SECURITY DEFINER} least-privilege execution.}
+            \resumeItem{Designed a standardized 4-tier role-based access control (RBAC) framework across $\sim$10 services for 50+ users (SOC2-aligned governance); authored a unified all-channel event-log API and a daily automated agency click-export feed.}
+          \resumeItemListEnd
+
+          \resumeSubSubheading{ION: Scheduling \& Optimization Engine}{Jan. 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Lead engineer; built and own end-to-end a 7-service, production-deployed scheduling and inventory-optimization platform ($\sim$28K LOC Python/Go, $\sim$700 tests, 18-table schema, OpenTofu/Terraform CI/CD).}
+            \resumeItem{Replaced a manual allocation workflow with a two-pass economic optimizer --- a HiGHS mixed-integer program with an LP-relaxation shadow-pricing feedback loop --- scaling to 8M targets across 1000 campaigns over a 120-day horizon.}
+            \resumeItem{Proved the program's integrality gap is exactly zero (min-cost network flow / total unimodularity), establishing the LP duals as exact competitive-equilibrium (Walrasian) prices; verified across 10,000+ instances.}
+            \resumeItem{Named inventor on the ION scheduling-architecture patent application (filed 2026, patent pending); authored counsel review memos seeding a shadow-pricing continuation.}
+            \resumeItem{Built the React/TypeScript Forecaster SPA (ALB--Cognito Google OAuth + RBAC) and own the production rollback/safety gate.}
+          \resumeItemListEnd
+
+          \resumeSubSubheading{Cartograph: HCP Behavioral-Representation \& Engagement Engine}{May 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Designed and shipped a consumer-agnostic embedding engine: $d=32$ learned provider representations plus an engagement scalar for 334K providers (Postgres/pgvector + HNSW), retrieval separation +0.547, treating cold-start ($\sim$95\% of the network) as a first-class regime.}
+            \resumeItem{Built a deterministic 4-signal inbound-reply scorer (two fine-tuned RoBERTa checkpoints over a 3-stage dispatch) replacing a 4-model GPT-4o chain, trained on an 11,731-row human-labeled corpus and deployed as a live FastAPI service.}
+            \resumeItem{Measured engagement sparsity and burstiness across the provider network (median 1 substantive event/provider/year), redirecting the architecture to a count-based window; wired an integrality-safe engagement term into ION's optimizer.}
+          \resumeItemListEnd
+
+          \resumeSubSubheading{Platform, Cross-Functional Leadership \& IP}{2026}
+          \resumeItemListStart
+            \resumeItem{Conceived and presented the firm-wide ``Delivery Intelligence Platform'' thesis (HAIRGEL $\rightarrow$ Cartograph $\rightarrow$ ION) at the company all-hands with a live ION demo; ran a cross-team ION code review for engineering, product, and QA.}
+            \resumeItem{Designated cross-functional owner of the company-wide event taxonomy and engineering partner-of-record for Product on ION delivery; onboarded a new engineer onto ION code reviews and taught safe query/optimization patterns across teams.}
+            \resumeItem{Built Peer Connect, a two-sided physician-to-physician matching product, on the shared embedding and optimization stack (winner of the 2026 Impiricus development hackathon; see Awards).}
           \resumeItemListEnd
 
         \resumeSubheading
@@ -159,6 +184,13 @@
           \resumeItemListEnd
 
   \resumeSubHeadingListEnd
+
+%-----------AWARDS-----------
+\section{Awards \& Recognition}
+    \resumeItemListStart
+        \resumeItem{\textbf{``Outstanding Contributions to Impiricus'' Award}, Data Engineering / Development team recognition (2026).}
+        \resumeItem{\textbf{Winner, Impiricus Development Hackathon} (team award), 2026, for Peer Connect.}
+    \resumeItemListEnd
 
 %-----------PROJECTS-----------
 \section{Projects}
@@ -187,10 +219,10 @@
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Languages}{: Python, SQL, Rust, Go, R, JavaScript, Bash/Zsh, \LaTeX} \\
-     \textbf{Data Engineering \& Infrastructure}{: PostgreSQL, MongoDB, Redis, Apache Spark, Kubernetes, Docker, AWS (S3, Lambda, SageMaker, Glue, Athena), pgvector, Serverless Architectures} \\
-     \textbf{Machine Learning \& AI}{: PyTorch, scikit-learn, XGBoost, LightGBM, LangGraph, vLLM, RAG, GraphCodeBERT, Transformers} \\
-     \textbf{Advanced Mathematics}{: Spectral Graph Theory, Control Theory, Network Science, Topology, Bayesian Inference, Category Theory} \\
+     \textbf{Languages}{: Python, SQL, Rust, Go, R, JavaScript/TypeScript, Bash/Zsh, \LaTeX} \\
+     \textbf{Data Engineering \& Infrastructure}{: PostgreSQL/Aurora, pg\_cron, MongoDB, Redis, Apache Spark, Kubernetes, Docker, AWS (S3, Lambda, SageMaker, Glue, Athena, ECS, Cognito), OpenTofu/Terraform, pgvector, FastAPI, Serverless Architectures} \\
+     \textbf{Machine Learning \& AI}{: PyTorch, scikit-learn, XGBoost, LightGBM, RoBERTa/Transformers, LangGraph, vLLM, RAG, GraphCodeBERT, Embeddings/HNSW} \\
+     \textbf{Optimization \& Mathematics}{: Mixed-Integer Programming (HiGHS, OR-Tools), LP Duality \& Shadow Pricing, Network Flows, Mechanism Design, Spectral Graph Theory, Control Theory, Network Science, Bayesian Inference} \\
      \textbf{Developer Tools \& Visualization}{: Git, Neovim, Linux/Unix, Tableau, Plotly, Seaborn, React}
     }}
  \end{itemize}
@@ -199,7 +231,8 @@
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: Mandarin Chinese (HSK 3.5)} \\
-     \textbf{Professional Operations}{: Technical Documentation, Stakeholder Management, Agile/Scrum, Cross-functional Team Leadership}
+     \textbf{Professional Operations}{: Technical Documentation, Stakeholder Management, Agile/Scrum, Cross-functional Team Leadership} \\
+     \textbf{Leadership \& Activities}{: Shakespeare Club President; Phi Gamma Delta Member}
     }}
  \end{itemize}
 
